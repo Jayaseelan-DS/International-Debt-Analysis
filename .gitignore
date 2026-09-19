@@ -1,0 +1,10 @@
+
+# Data files (too large / not needed in repo)
+data/raw/*.csv
+data/cleaned/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
