@@ -125,12 +125,12 @@ ORDER BY Total_value DESC;
 
 # 12) Display the top 10 countries with the highest total debt.
 
-SELECT c.country_name, SUM(dd.value) AS Total_value
+SELECT c.country_name, dd.value AS debt_2024
 FROM debt_data dd
-JOIN countries c
-on c.country_code = dd.country_code
-GROUP BY c.country_name
-ORDER BY Total_value DESC
+JOIN countries c ON c.country_code = dd.country_code
+WHERE dd.series_code = 'DT.DOD.DECT.CD'
+  AND dd.year = 2024
+ORDER BY dd.value DESC
 LIMIT 10;
 
 # 13) Find the average debt per country.
@@ -259,6 +259,7 @@ FROM (
     FROM debt_data dd
     JOIN countries c ON c.country_code = dd.country_code
     JOIN indicators i ON i.series_code = dd.series_code
+    WHERE dd.year = 2024
 ) AS ranked
 WHERE rnk <= 3
 ORDER BY indicator_name, rnk;
